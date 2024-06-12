@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Reels Downloader</h1>
+    <form id="downloadForm">
+        <label for="url">Enter the URL of the Reel:</label><br>
+        <input type="text" id="link" name="url"><br>
+        <input value="Download" type="button" onclick="downloadButton()" />
+    </form>
+
+    <script>
+        async function downloadButton() {
+
+            const link = document.getElementById('link').value;
+
+            const url = 'https://fb-video-reels.p.rapidapi.com/smvd/get/all?url=' + link + '&filename=Test%20video';
+
+            const options = {
+                method: 'GET',
+                headers: {
+                    'x-rapidapi-key': 'acb9788099msh101ff6d3df8df63p12759fjsn8e899bf5015e',
+                    'x-rapidapi-host': 'fb-video-reels.p.rapidapi.com'
+                }
+            };
+
+            try {
+                const response = await fetch(url, options);
+                var result = await response.text();
+                console.log(result);
+            } catch (error) {
+                console.error(error);
+            }
+            const result2 = JSON.parse(result);
+
+            for (let i = 0; i < result2.links.length; i++) {
+                if (result2.links[i].quality == 'sd_0') {
+                    console.log("hd" + i)
+
+                    downloadVideo(result2.links[i].link, result2.title)
+                }
+
+            }
+
+
+        }
+        function downloadVideo(link2, filename) {
+            const anchor = document.createElement('a');
+            anchor.href = link2;
+            anchor.download = filename;
+            anchor.click();
+        }
+
+      
+
+       
+
+        let ss = '{"success":true,"message":null,"src_url":"https://www.facebook.com/reel/978642843763011","og_url":"https://www.facebook.com/17841455991691559/videos/978642843763011/","title":"#viral #shorts Tawa Kaleji Recipe | Kaleji Fry Recipe | Bakra Eid Special Recipe | Tawa Fry Kaleji 2024. faiz_ansari_nisha_rasoi &#xb7; Original audio","picture":"https://scontent-mad2-1.xx.fbcdn.net/v/t15.6481-10/438131128_1095364211527578_1333455310305761287_n.jpg?stp=c0.76.296.296a_dst-jpg_p296x100&_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=zKq73YsnEI0Q7kNvgGfWUTM&_nc_ht=scontent-mad2-1.xx&oh=00_AYDM6Z-M2lqew8btC_WqeIjhCGa2dEbO6U4YpQAgktN6Xg&oe=666F48CE","links":[{"quality":"sd_0","link":"https://smvd-videos-downloader.ugo-code-studio.workers.dev/download?t=aHR0cHM6Ly9zY29udGVudC1tYWQyLTEueHguZmJjZG4ubmV0L3YvdDUwLjMzOTY3LTE2LzQ0ODExMjM1OF80Mzg4MTUxMzU3NTY2MTFfMzY1NDI4OTA5MTU0NDk3MTM3N19uLm1wND9fbmNfY2F0PTEwMCZjY2I9MS03Jl9uY19zaWQ9NTVkMGQzJmVmZz1leUp5YkhJaU9qRXhORGdzSW5Kc1lTSTZOVEV5TENKMlpXNWpiMlJsWDNSaFp5STZJbkJ5YjJkeVpYTnphWFpsWDJneU5qUXRZbUZ6YVdNdFoyVnVNbDh6TmpCd0lpd2lkbWxrWlc5ZmFXUWlPamszT0RZME1qZzBNemMyTXpBeE1YMCUyNTNEJl9uY19vaGM9YmlTaWY5S2lYcTBRN2tOdmdGRy1ldkgmcmw9MTE0OCZ2YWJyPTYzOCZfbmNfaHQ9c2NvbnRlbnQtbWFkMi0xLnh4Jm9oPTAwX0FZQTNsc0o4aDdaNXdDN0dta3o4ZlNMeFNkSzlaUGhscF9ZTnA0bi12Mk5sQ0Emb2U9NjY2RjM1NUQ%3D&h=JTdCJTdE&filename=Test+video&dl=1"},{"quality":"hd_0","link":"https://smvd-videos-downloader.ugo-code-studio.workers.dev/download?t=aHR0cHM6Ly9zY29udGVudC1tYWQxLTEueHguZmJjZG4ubmV0L3YvdDUwLjMzOTY3LTE2LzQ0ODA1NDE2Nl83NTk4NjQxMjk2ODUxODlfMzMyMjg5NDI3ODcyOTMwODE0OV9uLm1wND9fbmNfY2F0PTEwMyZjY2I9MS03Jl9uY19zaWQ9NTVkMGQzJmVmZz1leUp5YkhJaU9qUTBNRFVzSW5Kc1lTSTZNVGMxTlN3aWRtVnVZMjlrWlY5MFlXY2lPaUp3Y205bmNtVnpjMmwyWlY5b01qWTBMV0poYzJsakxXZGxiakpmTnpJd2NDSXNJblpwWkdWdlgybGtJam81TnpnMk5ESTRORE0zTmpNd01URjkmX25jX29oYz1FS0cwTS1sby1UY1E3a052Z0U4aDJjbiZybD00NDA1JnZhYnI9MjkzNyZfbmNfaHQ9c2NvbnRlbnQtbWFkMS0xLnh4Jm9oPTAwX0FZREZoeHNJa2xBS1V0ZUQtZ0NaWUVKMzI2LVpwUzZBQllZaWNZc3YyNUdadkEmb2U9NjY2RjRFNzk%3D&h=JTdCJTdE&filename=Test+video&dl=1"},{"quality":"render_360p_0","link":"https://smvd-short.ugo-code-studio.workers.dev/r/liIpyxnpqzTrtwdxnsQV?dl=1"},{"quality":"render_540p_0","link":"https://smvd-short.ugo-code-studio.workers.dev/r/KPRCihJIUEaNFAqpwoUq?dl=1"},{"quality":"render_720p_0","link":"https://smvd-short.ugo-code-studio.workers.dev/r/xxIUTNLQgBazZNHxcvGA?dl=1"},{"quality":"audio_0","link":"https://smvd-videos-downloader.ugo-code-studio.workers.dev/download?t=aHR0cHM6Ly92aWRlby1tYWQyLTEueHguZmJjZG4ubmV0L3YvdDM5LjI1NDQ3LTIvNDQ4MzEwODQ0XzM4MTE1ODE2Nzc4Njk0OV85MjYyNzM1MDAxMjYxNzkzNDFfbi5tcDQ%2FX25jX2NhdD0xMDAmY2NiPTEtNyZfbmNfc2lkPTlhNWQ1MCZlZmc9ZXlKMlpXNWpiMlJsWDNSaFp5STZJbVJoYzJoZllYVmthVzlmWVdGamNGODJORjltYm05eWJURTBYMlp5WVdkZk1sOWhkV1JwYnlJc0luWnBaR1Z2WDJsa0lqbzVOemcyTkRJNE5ETTNOak13TVRGOSZfbmNfb2hjPVFvREZ6ck9aaXlrUTdrTnZnRzRvV3pyJl9uY19odD12aWRlby1tYWQyLTEueHgmb2g9MDBfQVlETlZFdVk4N0FLano5MHZZTTFQM0Z4MEZNYTZDazZ0WmQ4RVFtTGY4VVZ0USZvZT02NjZGNEY5MQ%3D%3D&h=JTdCJTdE&filename=Test+video&dl=1"}],"timeTaken":"1592ms","r_id":"JJZDdPxZLFlrgJKfetujJFMyd"}'
+    </script>
+</body>
+
+</html>
