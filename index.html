@@ -8,14 +8,21 @@
     <title>Document</title>
 </head>
 
-<body>
+<body data-new-gr-c-s-check-loaded="14.1180.0" data-gr-ext-installed="" style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+">
 
     <h1>Reels Downloader</h1>
-    <form id="downloadForm">
+    <form id="downloadForm" style="font-size: 20px; ">
         <label for="url">Enter the URL of the Reel:</label><br>
-        <input type="text" id="link" name="url"><br>
-        <input value="Download" type="button" onclick="downloadButton()" />
+        <input type="text" id="link" name="url" style="
+    width: -webkit-fill-available; height: 35px;
+"><br>
+        <input value="Download" type="button" onclick="downloadButton()">
     </form>
+
 
     <script>
         async function downloadButton() {
